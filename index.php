@@ -7,13 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajout Produit</title>
 </head>
+
 <body>
     <h1>Ajouter un produit</h1>
     <form action="traitement.php" method="post">
         <p>
             <label>
                 Nom du Produit :
-                <input type="text" name="namr">
+                <input type="text" name="name">
             </label>
         </p>
         <p>
@@ -32,6 +33,7 @@
             <input type="submit" name="submit" value="Ajouter le produit">
         </p>
     </form>
+    <a href="recap.php">Récap</a>
 </body>
 
 </html>
