@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,6 +39,7 @@
             </p>
         </form>
         <a href="recap.php">Récapitulatif des produits</a>
+        <span id=indexSpan>Le nombre d'objet en session actuellement est de <?= count($_SESSION['products']) ?>.</span>
     </div>
 </body>
 

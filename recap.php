@@ -48,6 +48,7 @@ session_start();
                     <tr>
                         <td colspan=4>Total général : </td>
                         <td id="caseTotalVal"><strong><?= number_format($totalGeneral, 2, ",", "&nbsp;") . "&nbsp;€" ?></strong></td>
+                        <td><a href=""></a></td>
                     </tr>
                 </tbody>
             </table>
@@ -55,6 +56,7 @@ session_start();
         }
         ?>
         <a href="index.php">Principal</a>
+        <span id=recapSpan>Le nombre d'objet en session actuellement est de <?= count($_SESSION['products']) ?>.</span>
     </div>
 </body>
 
