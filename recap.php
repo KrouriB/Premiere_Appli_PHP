@@ -48,15 +48,15 @@ session_start();
                     <tr>
                         <td colspan=4>Total général : </td>
                         <td id="caseTotalVal"><strong><?= number_format($totalGeneral, 2, ",", "&nbsp;") . "&nbsp;€" ?></strong></td>
-                        <td><a href=""></a></td>
+                        <td><a href="traitement.php?action=clear">Videz le panier</a></td>
                     </tr>
                 </tbody>
             </table>
+            <span id="recapSpan">Le nombre d'objet en session actuellement est de <?= count($_SESSION['products']) ?>.</span>
         <?php
         }
         ?>
-        <a href="index.php">Principal</a>
-        <span id=recapSpan>Le nombre d'objet en session actuellement est de <?= count($_SESSION['products']) ?>.</span>
+        <a href="index.php" id="btnIndex">Principal</a>
     </div>
 </body>
 
