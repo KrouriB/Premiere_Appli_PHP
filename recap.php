@@ -9,6 +9,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/50e50e8630.js" crossorigin="anonymous"></script>
     <title>Récapitulatif des produits</title>
 </head>
 
@@ -38,9 +39,9 @@ session_start();
                             <td class="tdIndex"><?= $index ?></td>
                             <td><?= $product['name'] ?></td>
                             <td><?= number_format($product['price'], 2, ",", "&nbsp;") . "&nbsp;€" ?></td>
-                            <td><?= $product['qtt'] ?></td>
+                            <td class="qttLigne"><div class="btnPlusMoins"><a href="traitement.php?action=more&id=<?= $index ?>" class="btn plus">+</a><a href="traitement.php?action=less&id=<?= $index ?>" class="btn moins">-</a></div><?= $product['qtt'] ?></td>
                             <td class="unTotal"><?= number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€" ?></td>                        
-                            <td><a href="traitement.php?action=delete&id=<?= $index ?>">Supprimez le produit</a></td>'
+                            <td class="colSuppr"><a href="traitement.php?action=delete&id=<?= $index ?>"><i class="fa-solid fa-delete-left"></i></a></td>'
                         </tr>
                     <?php
                         $totalGeneral += $product['total'];
@@ -49,7 +50,7 @@ session_start();
                     <tr>
                         <td colspan=4>Total général : </td>
                         <td id="caseTotalVal"><strong><?= number_format($totalGeneral, 2, ",", "&nbsp;") . "&nbsp;€" ?></strong></td>
-                        <td><a href="traitement.php?action=clear">Videz le panier</a></td>
+                        <td class="colSuppr"><a href="traitement.php?action=clear"><i class="fa-solid fa-trash"></i></a></td>
                     </tr>
                 </tbody>
             </table>
