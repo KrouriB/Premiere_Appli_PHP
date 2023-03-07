@@ -15,7 +15,7 @@ session_start();
 <body>
     <div id="indexWrap">
         <h1>Ajouter un produit</h1>
-        <form action="traitement.php" method="post">
+        <form action="traitement.php?action=add" method="post">
             <p class="info">
                 <label for="name">
                     Nom du Produit :
@@ -39,7 +39,15 @@ session_start();
             </p>
         </form>
         <a href="recap.php">Récapitulatif des produits</a>
-        <span id=indexSpan>Le nombre d'objet en session actuellement est de <?= count($_SESSION['products']) ?>.</span>
+        <?php
+        $valCountSession = 0;
+        if (!isset($_SESSION['products']) || empty($_SESSION['products'])) {
+            $valCountSession = 0;
+        } else {
+            $valCountSession = count($_SESSION['products']);
+        }
+        ?>
+        <span id="indexSpan">Le nombre d'objet en session actuellement est de <?= $valCountSession ?>.</span>
     </div>
 </body>
 
