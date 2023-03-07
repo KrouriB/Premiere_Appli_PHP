@@ -20,12 +20,34 @@ if (isset($_GET['action'])){
             break;
         case "clear":
             unset($_SESSION['products']);
+            header("Location:recap.php");
+            die();
             break;
         case "delete":
             if (isset($_GET['id']) && isset($_SESSION['products'][$_GET['id']])){
                 unset($_SESSION['products'][$_GET['id']]);
             }
-            break;
+            header("Location:recap.php");
+            die();
+        case "more":
+            if (isset($_GET['id']) && isset($_SESSION['products'][$_GET['id']])){
+                $_SESSION['products'][$_GET['id']]['qtt'] += 1;
+                $_SESSION['products'][$_GET['id']]['total'] = $_SESSION['products'][$_GET['id']]['qtt']*$_SESSION['products'][$_GET['id']]['price'];
+            }
+            header("Location:recap.php");
+            die();
+        case "less":
+            if (isset($_GET['id']) && isset($_SESSION['products'][$_GET['id']])){
+                if ($_SESSION['products'][$_GET['id']]['qtt'] == 1){
+                    unset($_SESSION['products'][$_GET['id']]);
+                }
+                else{
+                    $_SESSION['products'][$_GET['id']]['qtt'] -= 1;
+                    $_SESSION['products'][$_GET['id']]['total'] = $_SESSION['products'][$_GET['id']]['qtt']*$_SESSION['products'][$_GET['id']]['price'];
+                }
+            }
+            header("Location:recap.php");
+            die();
     }
 }
 header("Location:index.php"); // redirection vers index.php si on va sur ce fichier
