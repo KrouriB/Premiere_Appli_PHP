@@ -1,6 +1,7 @@
 <?php
 session_start();
 ob_start();
+require "fonction.php";
 ?>
 <div id="indexWrap">
     <h1>Ajouter un produit</h1>
@@ -27,15 +28,7 @@ ob_start();
             <input type="submit" name="submit" value="Ajouter le produit" id="submitbtn">
         </p>
     </form>
-    <?php
-    $valCountSession = 0;
-    if (!isset($_SESSION['products']) || empty($_SESSION['products'])) {
-        $valCountSession = 0;
-    } else {
-        $valCountSession = count($_SESSION['products']);
-    }
-    ?>
-    <span id="indexSpan">Le nombre d'objet en session actuellement est de <?= $valCountSession ?>.</span>
+    <span id="indexSpan">Le nombre d'objet en session actuellement est de <?= compteObjetSession() ?>.</span>
 </div>
 <?php
     $content = ob_get_clean();

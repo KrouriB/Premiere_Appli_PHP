@@ -1,6 +1,7 @@
 <?php
 session_start();
 ob_start();
+require "fonction.php";
 ?>
 
 <div id="recapWrap">
@@ -9,6 +10,7 @@ ob_start();
         echo "<p>Aucun produit en session ...</p>";
     } else {
     ?>
+        <h1>Votre Panier:</h1>
         <table>
             <thead>
                 <tr>
@@ -43,7 +45,7 @@ ob_start();
                 </tr>
             </tbody>
         </table>
-        <span id="recapSpan">Le nombre d'objet en session actuellement est de <?= count($_SESSION['products']) ?>.</span>
+        <span id="recapSpan">Le nombre d'objet en session actuellement est de <?= "compteObjetSession"() ?>.</span>
     <?php
     }
     ?>

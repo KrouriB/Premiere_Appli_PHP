@@ -1,15 +1,3 @@
-<?php
-    $qttProduitTotal = 0;
-    if (!isset($_SESSION['products']) || empty($_SESSION['products'])) {
-        $qttProduitTotal = 0;
-    } else {
-        $valCountSession = count($_SESSION['products']);
-        foreach ($_SESSION['products'] as $index => $product){
-            $qttProduitTotal += $product['qtt'];
-        }
-    }
-    
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +15,7 @@
         <ul>
             <li><a href="index.php">Accueil</a></li>
             <li><a href="recap.php">Panier</a></li>
-            <li id="qttTotal">Récapitulatif du nombre de produit en panier : <span><?= $qttProduitTotal ?></span></li>
+            <li id="qttTotal">Récapitulatif du nombre de produit en panier : <span><?= qttTotal() ?></span></li>
         </ul>
     </header>
     <?php echo $content ; ?>
