@@ -1,4 +1,7 @@
-<?php ob_start(); ?>
+<?php
+session_start();
+ob_start();
+?>
 
 <div id="recapWrap">
     <?php
@@ -44,7 +47,6 @@
     <?php
     }
     ?>
-    <a href="index.php" id="btnIndex">Principal</a>
 </div>
 
 <?php

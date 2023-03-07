@@ -1,4 +1,7 @@
-<?php ob_start(); ?>
+<?php
+session_start();
+ob_start();
+?>
 <div id="indexWrap">
     <h1>Ajouter un produit</h1>
     <form action="traitement.php?action=add" method="post">
@@ -24,7 +27,6 @@
             <input type="submit" name="submit" value="Ajouter le produit" id="submitbtn">
         </p>
     </form>
-    <a href="recap.php">Récapitulatif des produits</a>
     <?php
     $valCountSession = 0;
     if (!isset($_SESSION['products']) || empty($_SESSION['products'])) {
