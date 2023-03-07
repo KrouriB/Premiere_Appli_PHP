@@ -21,6 +21,11 @@ if (isset($_GET['action'])){
         case "clear":
             unset($_SESSION['products']);
             break;
+        case "delete":
+            if (isset($_GET['id']) && isset($_SESSION['products'][$_GET['id']])){
+                unset($_SESSION['products'][$_GET['id']]);
+            }
+            break;
     }
 }
 header("Location:index.php"); // redirection vers index.php si on va sur ce fichier

@@ -39,7 +39,8 @@ session_start();
                             <td><?= $product['name'] ?></td>
                             <td><?= number_format($product['price'], 2, ",", "&nbsp;") . "&nbsp;€" ?></td>
                             <td><?= $product['qtt'] ?></td>
-                            <td class="unTotal"><?= number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€" ?></td>
+                            <td class="unTotal"><?= number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€" ?></td>                        
+                            <td><a href="traitement.php?action=delete&id=<?= $index ?>">Supprimez le produit</a></td>'
                         </tr>
                     <?php
                         $totalGeneral += $product['total'];
