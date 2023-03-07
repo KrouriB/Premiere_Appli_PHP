@@ -22,3 +22,12 @@ function compteObjetSession(){
     }
     return $valCountSession;
 }
+
+function getMessages(){
+    if(isset( $_SESSION["message"])&& !empty( $_SESSION["message"])){
+        $html = "<div id='message'>". $_SESSION["message"]."<p></p></div>";
+        unset( $_SESSION["message"]);
+        return $html;
+    }
+    return false;
+}

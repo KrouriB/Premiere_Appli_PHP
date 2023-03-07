@@ -15,17 +15,23 @@ if (isset($_GET['action'])){
                         "total" => $price * $qtt
                     ];
                     $_SESSION['products'][] = $product;
+                    $_SESSION["message"] = "Produit enregistré avec succès !";
                 }
+            }
+            else{
+                $_SESSION["message"] = "Vous ne pouvez pas enregistré ce produit !";
             }
             break;
         case "clear":
             unset($_SESSION['products']);
+            $_SESSION["message"] = "Le panier a été vidé !";
             header("Location:recap.php");
             die();
             break;
         case "delete":
             if (isset($_GET['id']) && isset($_SESSION['products'][$_GET['id']])){
                 unset($_SESSION['products'][$_GET['id']]);
+                $_SESSION["message"] = "Le Produit <strong>".$_SESSION['products'][$_GET['id']]['name']."</strong> a été supprimé !";
             }
             header("Location:recap.php");
             die();
@@ -40,6 +46,7 @@ if (isset($_GET['action'])){
             if (isset($_GET['id']) && isset($_SESSION['products'][$_GET['id']])){
                 if ($_SESSION['products'][$_GET['id']]['qtt'] == 1){
                     unset($_SESSION['products'][$_GET['id']]);
+                    $_SESSION["message"] = "Le Produit <strong> ".$_SESSION['products'][$_GET['id']]['name']." </strong> a été supprimé !";
                 }
                 else{
                     $_SESSION['products'][$_GET['id']]['qtt'] -= 1;
