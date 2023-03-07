@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/50e50e8630.js" crossorigin="anonymous"></script>
-    <title><?php echo $titre; ?></title>
+    <title><?= $titre ?></title>
 </head>
 
 <body>
@@ -18,7 +18,7 @@
             <li id="qttTotal">Récapitulatif du nombre de produit en panier : <span><?= qttTotal() ?></span></li>
         </ul>
     </header>
-    <?php echo $content ; ?>
+    <?= $content ?>
 </body>
 
 </html>
