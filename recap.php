@@ -7,9 +7,11 @@ require "fonction.php";
 <div id="recapWrap">
     <?php
     if (!isset($_SESSION['products']) || empty($_SESSION['products'])) {
+        echo getMessages();
         echo "<p>Aucun produit en session ...</p>";
     } else {
     ?>
+        <?= getMessages() ?>
         <h1>Votre Panier:</h1>
         <table>
             <thead>
@@ -32,7 +34,7 @@ require "fonction.php";
                         <td><?= number_format($product['price'], 2, ",", "&nbsp;") . "&nbsp;€" ?></td>
                         <td class="qttLigne"><div class="btnPlusMoins"><a href="traitement.php?action=more&id=<?= $index ?>" class="btn plus">+</a><a href="traitement.php?action=less&id=<?= $index ?>" class="btn moins">-</a></div><?= $product['qtt'] ?></td>
                         <td class="unTotal"><?= number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€" ?></td>                        
-                        <td class="colSuppr"><a href="traitement.php?action=delete&id=<?= $index ?>"><i class="fa-solid fa-delete-left"></i></a></td>'
+                        <td class="colSuppr"><a href="traitement.php?action=delete&id=<?= $index ?>"><i class="fa-solid fa-delete-left"></i></a></td>
                     </tr>
                 <?php
                     $totalGeneral += $product['total'];
@@ -45,7 +47,7 @@ require "fonction.php";
                 </tr>
             </tbody>
         </table>
-        <span id="recapSpan">Le nombre d'objet en session actuellement est de <?= "compteObjetSession"() ?>.</span>
+        <span id="recapSpan">Le nombre d'objet en session actuellement est de <?= compteObjetSession() ?>.</span>
     <?php
     }
     ?>

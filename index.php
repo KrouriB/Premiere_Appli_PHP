@@ -4,6 +4,7 @@ ob_start();
 require "fonction.php";
 ?>
 <div id="indexWrap">
+    <?= getMessages() ?>
     <h1>Ajouter un produit</h1>
     <form action="traitement.php?action=add" method="post">
         <p class="info">
