@@ -29,7 +29,7 @@ require "fonction.php";
             <label for="resume">
                 Une Description :
             </label>
-            <textarea name="resume" id="resume"></textarea>
+            <textarea name="resume" id="resume" rows="5"></textarea>
         </p>
         <p class="info">
             <label for="image">
