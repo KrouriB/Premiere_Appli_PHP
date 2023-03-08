@@ -6,7 +6,7 @@ require "fonction.php";
 <div id="indexWrap">
     <?= getMessages() ?>
     <h1>Ajouter un produit</h1>
-    <form action="traitement.php?action=add" method="post">
+    <form action="traitement.php?action=add" method="post" enctype="multipart/form-data">
         <p class="info">
             <label for="name">
                 Nom du Produit :
