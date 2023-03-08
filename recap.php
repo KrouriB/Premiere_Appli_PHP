@@ -30,7 +30,7 @@ require "fonction.php";
                 ?>
                     <tr>
                         <td class="tdIndex"><?= $index ?></td>
-                        <td><?= $product['name'] ?></td>
+                        <td><a href="detail.php?id=<?= $index ?>"><?= $product['name'] ?></a></td>
                         <td><?= number_format($product['price'], 2, ",", "&nbsp;") . "&nbsp;€" ?></td>
                         <td class="qttLigne"><div class="btnPlusMoins"><a href="traitement.php?action=more&id=<?= $index ?>" class="btn plus">+</a><a href="traitement.php?action=less&id=<?= $index ?>" class="btn moins">-</a></div><?= $product['qtt'] ?></td>
                         <td class="unTotal"><?= number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€" ?></td>                        
