@@ -8,23 +8,33 @@ if (isset($_GET['action'])){
                 $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION); // FILTER_FLAG_ALLOW_FRACTION -> permet l'utilisation de . ou , pour les nombre décimaux
                 $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
                 $resume = filter_input(INPUT_POST, "resume", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                $tmpName = $_FILES['image']['tmp_name'];
-                $imageName = $_FILES['image']['name'];
-                $error = $_FILES['image']['error'];
-                $tabExtension = explode('.',$imageName);//découpe du nom de fichier et son extension en deux objet d'un tableau (suppression du point)
-                $extension = strtolower(end($tabExtension)); // objet a la fin du tableau rendu en miniscule
-                $autoriser = ['jpg','jpeg','png','webm']; // extension autorisé lors du comparatif
-                if ($name && $price && $qtt && $resume && in_array($extension, $autoriser && $error == 0) ) {
-                    $nomUnique = uniqid('', true);
-                    $nomFichier = $nomUnique.".".$extension;
-                    move_uploaded_file($tmpName,'./img/'.$nomFichier);
+                if(isset($_FILES['image'])){
+                    $tmpName = $_FILES['image']['tmp_name'];
+                    $imageName = $_FILES['image']['name'];
+                    $error = $_FILES['image']['error'];
+                    $tabExtension = explode('.',$imageName);//découpe du nom de fichier et son extension en deux objet d'un tableau (suppression du point)
+                    $extension = strtolower(end($tabExtension)); // objet a la fin du tableau rendu en miniscule
+                    $autoriser = ['jpg','jpeg','png','webm']; // extension autorisé lors du comparatif
+                    if(in_array($extension, $autoriser) && $error == 0){
+                        $nomUnique = uniqid('', true);
+                        $nomFichier = $nomUnique.".".$extension;
+                        move_uploaded_file($tmpName,'./img/'.$nomFichier);
+                        $pathImage = "img/".$nomFichier;
+                    }
+                    else{
+                        $_SESSION["message"] = "Il y a une erreure dans le fichier ou l'extension n'est pas celle désiré";
+                    }
+                }
+                if ($name && $price && $qtt && $resume) {
                     $product = [
                         "name" => $name,
                         "price" => $price,
                         "qtt" => $qtt,
                         "total" => $price * $qtt,
                         "resume" => $resume,
-                        "image" => "img/".$nomFichier;
+                        "imageName" => $imageName,
+                        "tmpName" => $tmpName,
+                        "image" => $pathImage
                     ];
                     $_SESSION['products'][] = $product;
                     $_SESSION["message"] = "Produit enregistré avec succès !";
