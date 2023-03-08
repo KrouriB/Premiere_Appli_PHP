@@ -7,19 +7,31 @@ if (isset($_GET['action'])){
                 $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION); // FILTER_FLAG_ALLOW_FRACTION -> permet l'utilisation de . ou , pour les nombre décimaux
                 $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
-                if ($name && $price && $qtt) {
+                $resume = filter_input(INPUT_POST, "resume", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $tmpName = $_FILES['image']['tmp_name'];
+                $imageName = $_FILES['image']['name'];
+                $error = $_FILES['image']['error'];
+                $tabExtension = explode('.',$imageName);//découpe du nom de fichier et son extension en deux objet d'un tableau (suppression du point)
+                $extension = strtolower(end($tabExtension)); // objet a la fin du tableau rendu en miniscule
+                $autoriser = ['jpg','jpeg','png','webm']; // extension autorisé lors du comparatif
+                if ($name && $price && $qtt && $resume && in_array($extension, $autoriser && $error == 0) ) {
+                    $nomUnique = uniqid('', true);
+                    $nomFichier = $nomUnique.".".$extension;
+                    move_uploaded_file($tmpName,'./img/'.$nomFichier);
                     $product = [
                         "name" => $name,
                         "price" => $price,
                         "qtt" => $qtt,
-                        "total" => $price * $qtt
+                        "total" => $price * $qtt,
+                        "resume" => $resume,
+                        "image" => "img/".$nomFichier;
                     ];
                     $_SESSION['products'][] = $product;
                     $_SESSION["message"] = "Produit enregistré avec succès !";
                 }
-            }
-            else{
-                $_SESSION["message"] = "Vous ne pouvez pas enregistré ce produit !";
+                else{
+                    $_SESSION["message"] = "Vous ne pouvez pas enregistré ce produit !";
+                }
             }
             break;
         case "clear":
@@ -30,8 +42,8 @@ if (isset($_GET['action'])){
             break;
         case "delete":
             if (isset($_GET['id']) && isset($_SESSION['products'][$_GET['id']])){
+                $_SESSION["message"] = "Le Produit ".$_SESSION['products'][$_GET['id']]['name']." a été supprimé !";
                 unset($_SESSION['products'][$_GET['id']]);
-                $_SESSION["message"] = "Le Produit <strong>".$_SESSION['products'][$_GET['id']]['name']."</strong> a été supprimé !";
             }
             header("Location:recap.php");
             die();
@@ -45,8 +57,8 @@ if (isset($_GET['action'])){
         case "less":
             if (isset($_GET['id']) && isset($_SESSION['products'][$_GET['id']])){
                 if ($_SESSION['products'][$_GET['id']]['qtt'] == 1){
+                    $_SESSION["message"] = "Le Produit  ".$_SESSION['products'][$_GET['id']]['name']."  a été supprimé !";
                     unset($_SESSION['products'][$_GET['id']]);
-                    $_SESSION["message"] = "Le Produit <strong> ".$_SESSION['products'][$_GET['id']]['name']." </strong> a été supprimé !";
                 }
                 else{
                     $_SESSION['products'][$_GET['id']]['qtt'] -= 1;
