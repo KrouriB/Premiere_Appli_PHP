@@ -18,8 +18,7 @@ if (isset($_GET['action'])){
                     if(in_array($extension, $autoriser) && $error == 0){
                         $nomUnique = uniqid('', true);
                         $nomFichier = $nomUnique.".".$extension;
-                        move_uploaded_file($tmpName,'./img/'.$nomFichier);
-                        $pathImage = "img/".$nomFichier;
+                        move_uploaded_file($tmpName,'img/'.$nomFichier);
                     }
                     else{
                         $_SESSION["message"] = "Il y a une erreure dans le fichier ou l'extension n'est pas celle désiré";
@@ -34,7 +33,7 @@ if (isset($_GET['action'])){
                         "resume" => $resume,
                         "imageName" => $imageName,
                         "tmpName" => $tmpName,
-                        "image" => $pathImage
+                        "image" => $nomFichier
                     ];
                     $_SESSION['products'][] = $product;
                     $_SESSION["message"] = "Produit enregistré avec succès !";
