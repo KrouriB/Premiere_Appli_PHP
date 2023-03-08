@@ -25,6 +25,18 @@ require "fonction.php";
             </label>
             <input type="number" name="qtt" value="1" id="qtt">
         </p>
+        <p id="textareaResume">
+            <label for="resume">
+                Une Description :
+            </label>
+            <textarea name="resume" id="resume"></textarea>
+        </p>
+        <p class="info">
+            <label for="image">
+                Une Image :
+            </label>
+            <input type="file" name="image" id="image">
+        </p>
         <p>
             <input type="submit" name="submit" value="Ajouter le produit" id="submitbtn">
         </p>
