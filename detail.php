@@ -6,7 +6,7 @@ require "fonction.php";
 
 <div id="detailWrap">
     <figure>
-        <img src="<?= $_SESSION['products'][$_GET['id']]['image'] ?>" alt="image du produit <?= $_SESSION['products'][$_GET['id']]['name'] ?>">
+        <img src="img/<?= $_SESSION['products'][$_GET['id']]['image'] ?>" alt="image du produit <?= $_SESSION['products'][$_GET['id']]['name'] ?>">
     </figure>
     <h1><?= $_SESSION['products'][$_GET['id']]['name'] ?></h1>
     <span><?= $_SESSION['products'][$_GET['id']]['price'] ?>€</span>
