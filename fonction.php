@@ -25,7 +25,7 @@ function compteObjetSession(){
 
 function getMessages(){
     if(isset( $_SESSION["message"])&& !empty( $_SESSION["message"])){
-        $html = "<div id='message'>". $_SESSION["message"]."<p></p></div>";
+        $html = "<div id='message'><p>". $_SESSION["message"]."</p></div>";
         unset( $_SESSION["message"]);
         return $html;
     }
