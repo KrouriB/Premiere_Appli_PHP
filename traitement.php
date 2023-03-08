@@ -14,7 +14,7 @@ if (isset($_GET['action'])){
                     $error = $_FILES['image']['error'];
                     $tabExtension = explode('.',$imageName);//découpe du nom de fichier et son extension en deux objet d'un tableau (suppression du point)
                     $extension = strtolower(end($tabExtension)); // objet a la fin du tableau rendu en miniscule
-                    $autoriser = ['jpg','jpeg','png','webm']; // extension autorisé lors du comparatif
+                    $autoriser = ['jpg','jpeg','png','webm','jfif']; // extension autorisé lors du comparatif
                     if(in_array($extension, $autoriser) && $error == 0){
                         $nomUnique = uniqid('', true);
                         $nomFichier = $nomUnique.".".$extension;
@@ -44,6 +44,9 @@ if (isset($_GET['action'])){
             }
             break;
         case "clear":
+            // foreach($_SESSION['products'] as $index => $product){
+            //     unlink($_SESSION['products'][$_GET['id']]['image']);
+            // }
             unset($_SESSION['products']);
             $_SESSION["message"] = "Le panier a été vidé !";
             header("Location:recap.php");
@@ -52,6 +55,7 @@ if (isset($_GET['action'])){
         case "delete":
             if (isset($_GET['id']) && isset($_SESSION['products'][$_GET['id']])){
                 $_SESSION["message"] = "Le Produit ".$_SESSION['products'][$_GET['id']]['name']." a été supprimé !";
+                // unlink($_SESSION['products'][$_GET['id']]['image']);
                 unset($_SESSION['products'][$_GET['id']]);
             }
             header("Location:recap.php");
@@ -67,6 +71,7 @@ if (isset($_GET['action'])){
             if (isset($_GET['id']) && isset($_SESSION['products'][$_GET['id']])){
                 if ($_SESSION['products'][$_GET['id']]['qtt'] == 1){
                     $_SESSION["message"] = "Le Produit  ".$_SESSION['products'][$_GET['id']]['name']."  a été supprimé !";
+                    // unlink($_SESSION['products'][$_GET['id']]['image']);
                     unset($_SESSION['products'][$_GET['id']]);
                 }
                 else{
@@ -80,3 +85,5 @@ if (isset($_GET['action'])){
 }
 header("Location:index.php"); // redirection vers index.php si on va sur ce fichier
 die; // forece la fin d'un script
+
+// TODO: supprimer les image a la suppression d'un produit
