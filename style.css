@@ -102,13 +102,8 @@ h1{
 
 #textareaResume{
     width: 100%;
-    height: 20%;
     display: flex;
     flex-direction: column;
-}
-
-textarea{
-    height: 90%;
 }
 
 #submitbtn{
@@ -175,6 +170,10 @@ td {
     height: 100%;
 }
 
+.lienProd{
+    color: white;
+}
+
 .btnPlusMoins{
     display: flex;
     gap: 25%;
@@ -225,4 +224,32 @@ td {
     width: 100%;
     height: 100%;
     padding: 10% 0 0 5%;
+    background-color: gainsboro;
+    display: flex;
+    gap: 5%;
+}
+
+#imageDetail{
+    height: 50%;
+}
+
+#imageDetail img{
+    height: 100%;
+}
+
+#partDroite{
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+
+#infoPrincipal{
+    display: flex;
+    align-items: center;
+    gap: 10%;
+}
+
+#detailWrap p{
+    text-align: justify;
+    width: 90%;
 }
