@@ -5,12 +5,16 @@ require "fonction.php";
 ?>
 
 <div id="detailWrap">
-    <figure>
+    <figure id="imageDetail">
         <img src="img/<?= $_SESSION['products'][$_GET['id']]['image'] ?>" alt="image du produit <?= $_SESSION['products'][$_GET['id']]['name'] ?>">
     </figure>
-    <h1><?= $_SESSION['products'][$_GET['id']]['name'] ?></h1>
-    <span><?= $_SESSION['products'][$_GET['id']]['price'] ?>€</span>
-    <p><?= $_SESSION['products'][$_GET['id']]['resume'] ?></p>
+    <div id=partDroite>
+        <div id=infoPrincipal>
+            <h1><?= $_SESSION['products'][$_GET['id']]['name'] ?></h1>
+            <span><?= number_format($_SESSION['products'][$_GET['id']]['price'], 2, ",", "&nbsp;") . "€" ?></span>
+        </div>
+        <p><?= $_SESSION['products'][$_GET['id']]['resume'] ?></p>
+    </div>
 </div>
 
 <?php
