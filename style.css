@@ -72,7 +72,7 @@ header span{
     align-items: center;
     justify-content: center;
     background-color: rgb(244, 215, 188);
-    gap: 10%;
+    gap: 5%;
 }
 
 h1{
@@ -83,19 +83,32 @@ h1{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     flex-wrap: wrap;
     width: 40%;
-    padding: 2%;
+    height: 55%;
+    padding: 1%;
     border: solid 2px rgba(124, 6, 197, 0.565);
     background-color: rgba(255, 172, 163, 0.559);
     border-radius: 12px;
+    gap: 10%;
 }
 
 .info{
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding-bottom: 10%;
+}
+
+#textareaResume{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+textarea{
+    height: 90%;
 }
 
 #submitbtn{
@@ -204,4 +217,12 @@ td {
     align-items: center;
     color: white;
     text-decoration: none;
+}
+
+                    /*                    detail.php                          */
+
+#detailWrap{
+    width: 100%;
+    height: 100%;
+    padding: 10% 0 0 5%;
 }
