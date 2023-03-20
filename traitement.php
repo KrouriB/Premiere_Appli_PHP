@@ -44,9 +44,6 @@ if (isset($_GET['action'])){
             }
             break;
         case "clear":
-            // foreach($_SESSION['products'] as $index => $product){
-            //     unlink($_SESSION['products'][$_GET['id']]['image']);
-            // }
             unset($_SESSION['products']);
             $_SESSION["message"] = "Le panier a été vidé !";
             header("Location:recap.php");
@@ -55,7 +52,6 @@ if (isset($_GET['action'])){
         case "delete":
             if (isset($_GET['id']) && isset($_SESSION['products'][$_GET['id']])){
                 $_SESSION["message"] = "Le Produit ".$_SESSION['products'][$_GET['id']]['name']." a été supprimé !";
-                // unlink($_SESSION['products'][$_GET['id']]['image']);
                 unset($_SESSION['products'][$_GET['id']]);
             }
             header("Location:recap.php");
@@ -71,7 +67,6 @@ if (isset($_GET['action'])){
             if (isset($_GET['id']) && isset($_SESSION['products'][$_GET['id']])){
                 if ($_SESSION['products'][$_GET['id']]['qtt'] == 1){
                     $_SESSION["message"] = "Le Produit  ".$_SESSION['products'][$_GET['id']]['name']."  a été supprimé !";
-                    // unlink($_SESSION['products'][$_GET['id']]['image']);
                     unset($_SESSION['products'][$_GET['id']]);
                 }
                 else{
